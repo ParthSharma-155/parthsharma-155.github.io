@@ -41,6 +41,19 @@ h1{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(2.2rem,12vw,9rem)
 @keyframes rise{to{transform:none}}
 .ch:hover{transform:translateY(-.12em) rotate(-5deg)!important;color:var(--accent);-webkit-text-stroke-color:var(--accent)}
 .ln.out .ch:hover{color:var(--accent)}
+.syms{position:absolute;inset:0;pointer-events:none}
+.syms span{position:absolute;color:var(--accent);opacity:.2;font:700 2rem ui-monospace,Menlo,Consolas,monospace;animation:drift 7s ease-in-out infinite;animation-delay:var(--dl,0s)}
+@keyframes drift{50%{transform:translateY(-20px) rotate(8deg)}}
+#gr{display:inline-block;transition:opacity .25s,transform .25s}
+#gr.o{opacity:0;transform:translateY(8px)}
+h1{cursor:pointer}
+.tip{color:var(--muted);font-size:.9rem;margin:1.5rem 0 0}
+.conf{position:fixed;width:9px;height:9px;border-radius:2px;pointer-events:none;z-index:50}
+.fact{color:var(--accent);font-weight:500;min-height:3.2em;margin-top:1.2rem!important}
+.fact.pop{animation:pop .4s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(.9);opacity:0}}
+.card .cb h3::after{content:" \1F6A7";display:inline-block;animation:wob 1.6s ease-in-out infinite}
+@keyframes wob{50%{transform:rotate(14deg) translateY(-3px)}}
 .sub{font-size:1.3rem;color:var(--muted);max-width:30rem;margin:0 0 2rem}
 .btns{display:flex;gap:1rem;flex-wrap:wrap}
 .btn{display:inline-block;padding:.85rem 1.6rem;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--accent);transition:transform .25s,box-shadow .25s,background .25s,color .25s}
@@ -104,11 +117,13 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;text-align:center}
 <main id="top">
   <div class="hero">
     <div class="blob" id="blob" aria-hidden="true"></div>
+    <div class="syms" aria-hidden="true"><span style="left:6%;top:16%">{ }</span><span style="left:84%;top:14%;--dl:1s">&lt;/&gt;</span><span style="left:90%;top:62%;--dl:2s">;</span><span style="left:4%;top:70%;--dl:3s">01</span><span style="left:48%;top:8%;--dl:1.5s">( )</span><span style="left:70%;top:80%;--dl:.5s">=&gt;</span></div>
     <div class="wrap">
-      <p class="hello">Hello, I'm</p>
+      <p class="hello"><span id="gr">Hello</span>, I'm</p>
       <h1 aria-label="Parth Sharma"><span class="ln" data-t="Parth" aria-hidden="true">Parth</span><span class="ln out" data-t="Sharma" aria-hidden="true">Sharma</span></h1>
       <p class="sub">A first year Software Engineering student at the University of Guelph.</p>
       <div class="btns"><a class="btn main" href="#work">My projects</a><a class="btn alt" href="#contact">Say hello</a></div>
+      <p class="tip">Psst, try clicking my name.</p>
     </div>
     <div class="cue" aria-hidden="true"></div>
   </div>
@@ -128,7 +143,7 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;text-align:center}
   <section id="about"><div class="wrap">
     <h2 class="rv">About</h2>
     <div class="about">
-      <div class="rv"><p>I'm a first-year Software Engineering student at the University of Guelph.</p><p>I'm into problem-solving and figuring out how things work. I've built Python and Tkinter games, and I enjoy PC hardware and gaming. Right now I'm learning Python, C and HTML.</p></div>
+      <div class="rv"><p>I'm a first-year Software Engineering student at the University of Guelph.</p><p>I'm into problem-solving and figuring out how things work. I've built Python and Tkinter games, and I enjoy PC hardware and gaming. Right now I'm learning Python, C and HTML.</p><button class="btn alt" id="ff" type="button">Random fun fact</button><p class="fact" id="fact" aria-live="polite"></p></div>
       <div class="stats rv" style="--d:.15s">
         <div class="stat"><b data-n="3">0</b><span>languages I'm learning</span></div>
         <div class="stat"><b data-n="1">0</b><span>year in, many to go</span></div>
@@ -153,8 +168,28 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;text-align:center}
     var n=dark?'light':'dark';root.dataset.theme=n;
     try{localStorage.setItem('th',n)}catch(e){}
   };
+  var F=["I've built games with Python and Tkinter.","I like learning how PC parts work and tuning performance.","Right now I'm learning Python, C and HTML.","I enjoy figuring out how things work, then fixing them.","Discrete structures is teaching me to think in proofs."],fi=-1,fe=document.getElementById('fact');
+  document.getElementById('ff').onclick=function(){
+    fi=(fi+1)%F.length;fe.textContent=F[fi];
+    fe.classList.remove('pop');void fe.offsetWidth;fe.classList.add('pop');
+  };
   var still=matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(still)return;
+  var G=['Hello','Namaste','Hola','Bonjour','Ciao','Hallo'],gi=0,gr=document.getElementById('gr');
+  setInterval(function(){gr.classList.add('o');setTimeout(function(){gi=(gi+1)%G.length;gr.textContent=G[gi];gr.classList.remove('o')},260)},2400);
+  var cols=['#2150ff','#5b86ff','#9db8ff','#c9d8ff','#0b1533'];
+  function burst(x,y){
+    for(var n=0;n<34;n++){
+      var e=document.createElement('i');e.className='conf';e.style.left=x+'px';e.style.top=y+'px';
+      e.style.background=cols[n%cols.length];
+      document.body.appendChild(e);
+      var dx=(Math.random()-.5)*420,up=-(80+Math.random()*180),dn=120+Math.random()*220,r=Math.random()*720-360;
+      e.animate([{transform:'translate(0,0) rotate(0)',opacity:1},{transform:'translate('+dx*.6+'px,'+up+'px) rotate('+r*.5+'deg)',opacity:1,offset:.4},{transform:'translate('+dx+'px,'+dn+'px) rotate('+r+'deg)',opacity:0}],{duration:1100+Math.random()*600,easing:'cubic-bezier(.2,.7,.4,1)'}).onfinish=function(){this.effect.target.remove()};
+    }
+  }
+  document.getElementById('top').addEventListener('click',function(e){
+    if(e.target.closest('h1')||e.target.closest('.card'))burst(e.clientX,e.clientY);
+  });
   root.classList.add('js');
   var i=0;
   document.querySelectorAll('.ln').forEach(function(l){
