@@ -29,12 +29,12 @@ nav a:hover{color:var(--accent)}
 #th{width:2.2rem;height:2.2rem;border-radius:50%;border:1px solid var(--line);background:none;color:var(--ink);cursor:pointer;font-size:1rem;transition:transform .4s,border-color .2s}
 #th:hover{transform:rotate(180deg);border-color:var(--accent)}
 .hero{position:relative;min-height:calc(100vh - 4rem);display:flex;align-items:center;overflow:hidden}
-.hero .wrap{position:relative;z-index:1;padding-top:3rem;padding-bottom:5rem}
+.hero .wrap{width:100%;position:relative;z-index:1;padding-top:3rem;padding-bottom:5rem}
 .blob{position:absolute;width:32rem;height:32rem;max-width:90vw;max-height:90vw;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--accent),transparent 68%);opacity:.22;filter:blur(30px);left:var(--x,60%);top:var(--y,30%);translate:-50% -50%;transition:left 1.2s cubic-bezier(.2,.8,.2,1),top 1.2s cubic-bezier(.2,.8,.2,1);animation:float 9s ease-in-out infinite}
 @keyframes float{50%{scale:1.15}}
 .hello{color:var(--accent);font-weight:600;margin:0 0 1rem}
-h1{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(4rem,19vw,13rem);line-height:.88;letter-spacing:-.045em;margin:0 0 1.8rem}
-.ln{display:block;overflow:hidden;padding-bottom:.08em}
+h1{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(2.2rem,12vw,9rem);line-height:.88;letter-spacing:-.045em;margin:0 0 1.8rem}
+.ln{display:block;clip-path:inset(-.3em -1em 0 -1em);padding:0 .14em .08em .04em;margin-left:-.04em;white-space:nowrap}
 .ln.out{-webkit-text-stroke:2px var(--ink);color:transparent}
 .ch{display:inline-block;transition:transform .35s cubic-bezier(.3,1.6,.5,1),color .25s,-webkit-text-stroke-color .25s}
 .js .ch{transform:translateY(105%);animation:rise .9s cubic-bezier(.2,.9,.2,1) forwards;animation-delay:calc(var(--i)*70ms + 150ms)}
@@ -81,11 +81,12 @@ h2{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(2.2rem,6vw,3.6rem
 .stat b{display:block;font-family:Syne,sans-serif;font-size:2.4rem;color:var(--accent);line-height:1}
 .stat span{color:var(--muted);font-size:.95rem}
 .contact{text-align:center}
-.mail{display:inline-block;font-family:Syne,sans-serif;font-weight:800;font-size:clamp(1.5rem,6.5vw,4rem);letter-spacing:-.03em;text-decoration:none;word-break:break-word;background:linear-gradient(var(--accent),var(--accent)) 0 100%/0 .08em no-repeat;transition:background-size .4s,color .3s}
+.mail{display:inline-block;font-family:Syne,sans-serif;font-weight:800;font-size:clamp(1.1rem,4.4vw,2.6rem);letter-spacing:-.03em;text-decoration:none;word-break:break-word;background:linear-gradient(var(--accent),var(--accent)) 0 100%/0 .08em no-repeat;transition:background-size .4s,color .3s}
 .mail:hover{background-size:100% .08em;color:var(--accent)}
 .links{display:flex;justify-content:center;gap:2rem;margin-top:2rem;flex-wrap:wrap}
 .links a{color:var(--muted);text-decoration:none;transition:color .2s}
 .links a:hover{color:var(--accent)}
+.links span{color:var(--muted);opacity:.65}
 footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;text-align:center}
 .js .rv{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.9,.2,1);transition-delay:var(--d,0s)}
 .js .rv.in{opacity:1;transform:none}
@@ -97,7 +98,7 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;text-align:center}
 <div id="bar"></div>
 <header><div class="wrap">
   <a class="logo" href="#top">P<b>S</b></a>
-  <nav aria-label="Main"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a><button id="th" aria-label="Toggle light and dark theme">◐</button></nav>
+  <nav aria-label="Main"><a href="#work">Projects</a><a href="#about">About</a><a href="#contact">Contact</a><button id="th" aria-label="Toggle light and dark theme">◐</button></nav>
 </div></header>
 
 <main id="top">
@@ -105,48 +106,43 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;text-align:center}
     <div class="blob" id="blob" aria-hidden="true"></div>
     <div class="wrap">
       <p class="hello">Hello, I'm</p>
-      <h1 aria-label="Parth Sharma"><span class="ln" data-t="Parth" aria-hidden="true">Your</span><span class="ln out" data-t="Sharma" aria-hidden="true">Sharma</span></h1>
-      <p class="sub">A first year Software Engineering Student at the University of Guelph.</p>
-      <div class="btns"><a class="btn main" href="#work">See my work</a><a class="btn alt" href="#contact">Say hello</a></div>
+      <h1 aria-label="Parth Sharma"><span class="ln" data-t="Parth" aria-hidden="true">Parth</span><span class="ln out" data-t="Sharma" aria-hidden="true">Sharma</span></h1>
+      <p class="sub">A first year Software Engineering student at the University of Guelph.</p>
+      <div class="btns"><a class="btn main" href="#work">My projects</a><a class="btn alt" href="#contact">Say hello</a></div>
     </div>
     <div class="cue" aria-hidden="true"></div>
   </div>
 
   <div class="marq" aria-hidden="true"><div class="track">
-    <span>Python</span><span>Java</span><span>JavaScript</span><span>HTML &amp; CSS</span><span>Git</span><span>SQL</span><span>Problem solving</span>
-    <span>Python</span><span>Java</span><span>JavaScript</span><span>HTML &amp; CSS</span><span>Git</span><span>SQL</span><span>Problem solving</span>
+    <span>Python</span><span>C</span><span>HTML</span><span>Tkinter</span><span>Problem solving</span><span>PC hardware</span>
+    <span>Python</span><span>C</span><span>HTML</span><span>Tkinter</span><span>Problem solving</span><span>PC hardware</span>
   </div></div>
 
   <section id="work"><div class="wrap">
-    <h2 class="rv">Selected work</h2>
+    <h2 class="rv">My projects</h2>
     <div class="cards">
-      <a class="card rv" href="#"><div class="thumb"></div><div class="cb"><h3>Todo CLI</h3><p>A command-line task manager. Replace this with what yours does.</p><div class="tags"><span>Python</span><span>CLI</span></div></div></a>
-      <a class="card rv" href="#"><div class="thumb"></div><div class="cb"><h3>Personal site</h3><p>This portfolio. Link your live site and repo here.</p><div class="tags"><span>HTML</span><span>CSS</span><span>JS</span></div></div></a>
-      <a class="card rv" href="#"><div class="thumb"></div><div class="cb"><h3>Bank system</h3><p>A Java app practising classes, inheritance and file storage.</p><div class="tags"><span>Java</span><span>OOP</span></div></div></a>
-      <a class="card rv" href="#"><div class="thumb"></div><div class="cb"><h3>Study bot</h3><p>A Discord bot that sets study timers. Swap in your own project.</p><div class="tags"><span>JavaScript</span><span>API</span></div></div></a>
+      <div class="card rv"><div class="thumb"></div><div class="cb"><h3>More to come!</h3></div></div>
     </div>
   </div></section>
 
   <section id="about"><div class="wrap">
     <h2 class="rv">About</h2>
     <div class="about">
-      <div class="rv"><p>Write one strong sentence about who you are and what you want to build.</p><p>Add a bit about your program, what got you into coding, and what you're looking for next, like internships, hackathon teams or open-source projects.</p></div>
+      <div class="rv"><p>I'm a first-year Software Engineering student at the University of Guelph.</p><p>I'm into problem-solving and figuring out how things work. I've built Python and Tkinter games, and I enjoy PC hardware and gaming. Right now I'm learning Python, C and HTML.</p></div>
       <div class="stats rv" style="--d:.15s">
-        <div class="stat"><b data-n="4">0</b><span>projects built</span></div>
-        <div class="stat"><b data-n="3">0</b><span>languages</span></div>
+        <div class="stat"><b data-n="3">0</b><span>languages I'm learning</span></div>
         <div class="stat"><b data-n="1">0</b><span>year in, many to go</span></div>
-        <div class="stat"><b data-n="100" data-s="%">0</b><span>curious</span></div>
       </div>
     </div>
   </div></section>
 
   <section id="contact" class="contact"><div class="wrap">
     <h2 class="rv">Let's talk</h2>
-    <a class="mail rv" href="mailto:hello@example.com">hello@example.com</a>
-    <div class="links rv"><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">Résumé</a></div>
+    <a class="mail rv" href="mailto:parth.155sharma@gmail.com">parth.155sharma@gmail.com</a>
+    <div class="links rv"><a href="https://github.com/ParthSharma-155" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/parth-sharma-69a039441/" target="_blank" rel="noopener">LinkedIn</a><span>Résumé (in the works)</span></div>
   </div></section>
 </main>
-<footer>© 2026 Your Name</footer>
+<footer>© 2026 Parth Sharma</footer>
 
 <script>
 (function(){
